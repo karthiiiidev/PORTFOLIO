@@ -1078,7 +1078,7 @@ section {
       <div class="objective-tag text-silver">CRAFTING VISUAL STORIES & CLEAN CODE</div>
       
       <div style="display: flex; gap: 16px; justify-content: center; margin-top: 40px; flex-wrap: wrap;">
-        <a href="https://www.instagram.com/cyb3r.karthik/" target="_blank" class="btn-chrome"><i class="fab fa-instagram"></i> DM for Collab</a>
+        <a href="https://www.instagram.com/karthiiii.3dev/" target="_blank" class="btn-chrome"><i class="fab fa-instagram"></i> DM for Collab</a>
         <a href="https://www.instagram.com/karthiiii.mov/" target="_blank" class="btn-chrome"><i class="fab fa-instagram"></i> DM for Edit</a>
       </div>
     </div>
@@ -1095,16 +1095,16 @@ section {
       
       <h4 style="color: var(--fg); margin-bottom: 12px; font-size: 18px; text-transform: uppercase;">Contact</h4>
       <div class="contact-row">
-        <a href="https://www.instagram.com/cyb3r.karthik/" target="_blank" class="contact-badge">
+        <a href="https://www.instagram.com/karthiiii.3dev/" target="_blank" class="contact-badge">
          
-          <i class="fab fa-instagram" style="color: #e1306c;"></i> @cyb3r.karthik
+          <i class="fab fa-instagram" style="color: #e1306c;"></i> @karthiiii.3dev
         </a>
 <a href="https://www.instagram.com/karthiiii.mov/" target="_blank" class="contact-badge">
          
           <i class="fab fa-instagram" style="color: #e1306c;"></i> @karthiiii.mov
         </a>
-        <a href="mailto:cyb3r.karthik@gmail.com" class="contact-badge">
-          <i class="fas fa-at"></i> cyb3r.karthik@gmail.com
+        <a href="mailto:karthiiii.dev@gmail.com" class="contact-badge">
+          <i class="fas fa-at"></i> karthiiii.dev@gmail.com
         </a>
         <a href="https://discord.gg/G2RFhyfBEd" target="_blank" class="contact-badge" style="border-color: rgba(88, 101, 242, 0.5);">
           <i class="fab fa-discord" style="color: #5865F2;"></i> Discord Server
@@ -1259,7 +1259,7 @@ section {
   <p class="text-muted tracking-widest text-xs uppercase">Let's build something extraordinary</p>
   
   <div class="contact-icon-grid">
-    <a href="https://www.instagram.com/cyb3r.karthik/" target="_blank" class="contact-item ig-professional" data-label="Main @cyb3r.karthik">
+    <a href="https://www.instagram.com/karthiiii.3dev/" target="_blank" class="contact-item ig-professional" data-label="Main @cyb3r.karthik">
       <i class="fab fa-instagram"></i>
     </a>
 
@@ -1267,15 +1267,12 @@ section {
       <i class="fas fa-clapperboard"></i>
     </a>
 
-    <a href="mailto:cyb3r.karthik@gmail.com" class="contact-item" data-label="Send Email">
+    <a href="mailto:karthiiiidev@gmail.com" class="contact-item" data-label="Send Email">
       <i class="fas fa-envelope-open"></i>
     </a>
-<a href="https://linktr.ee/cyb3r.karthik" target="_blank" class="contact-item" data-label="Linktree">
-    <i class="fas fa-tree"></i>
-  </a>
-    <a href="https://discord.gg/G2RFhyfBEd" target="_blank" class="contact-item" data-label="Join Discord">
-      <i class="fab fa-discord"></i>
-    </a>
+    <a href="https://wa.me/919447465436" class="contact-item" data-label="WhatsApp>
+<i class="fab fa-whatsapp text-xl"></i>
+</a>
   </div>
 </center>
 </section>
@@ -1523,6 +1520,14 @@ window.addEventListener('scroll', () => {
         btn.querySelector('i').className = vid.muted ? 'fas fa-volume-xmark' : 'fas fa-volume-high';
       });
     });
+  track.addEventListener('wheel', e => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      stopAutoScroll();
+      track.scrollLeft += e.deltaY;
+      clearTimeout(track._wheelTimer);
+      track._wheelTimer = setTimeout(startAutoScroll, 1500);
+    }, { passive: false });
 
     // --- Click card to play/pause ---
     vidCards.forEach(card => {
@@ -1660,16 +1665,8 @@ document.querySelectorAll('.vid-mute-btn').forEach(btn => {
 
 });
 </script>
-    // --- Mouse-wheel horizontal scroll ---
-    track.addEventListener('wheel', e => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      e.preventDefault();
-      stopAutoScroll();
-      track.scrollLeft += e.deltaY;
-      clearTimeout(track._wheelTimer);
-      track._wheelTimer = setTimeout(startAutoScroll, 1500);
-    }, { passive: false });
-
+    
+  
   })();
   </script>
 </body>
