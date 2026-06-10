@@ -958,7 +958,6 @@ section {
     <div class="nav-content">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
-      <a href="#videos">Videos</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1020,48 +1019,47 @@ section {
   </div>
 </section>
 
-    <!-- proejectsdoneby me -->
-    <section class="section-container" id="projects" data-aos="fade-up" style="padding-top: 40px;">
-  <h2 class="section-title text-silver">Projects Done By Me</h2>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
-    
+    <!-- projects done by me -->
+    <section id="projects" data-aos="fade-up" style="padding-top: 40px;">
+  <div class="section-container" style="padding-bottom: 40px;">
+    <h2 class="section-title text-silver">Projects Done By Me</h2>
+
+    <!-- Website links only -->
     <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-      <h3 style="font-size: 22px; color: var(--fg); margin-bottom: 20px;"><i class="fas fa-globe"></i> Website Projects</h3>
-      
-      <div style="display: flex; flex-direction: column; gap: 20px;">
+      <h3 style="font-size: 22px; color: var(--fg); margin-bottom: 24px;"><i class="fas fa-globe"></i> Website Projects</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
         <a href="https://www.msafeindustries.in/" target="_blank" class="project-card">
            <h4 style="font-size: 18px; margin-bottom: 8px;">MSAFE Industries</h4>
            <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.5;">A comprehensive and responsive business website crafted meticulously.</p>
            <div class="btn-chrome" style="align-self: flex-start; padding: 10px 20px; font-size: 12px;"><i class="fas fa-external-link-alt"></i> Visit Site</div>
         </a>
-
-        <a href="https://karthiiii3dev.github.io/Jsquare-mobiles/" target="_blank" class="project-card">
+        <a href="https://www.belmindriveclicks.in/" target="_blank" class="project-card">
+           <h4 style="font-size: 18px; margin-bottom: 8px;">Belmin Drive Clicks</h4>
+           <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.5;">Modern Travel Agency Website.</p>
+           <div class="btn-chrome" style="align-self: flex-start; padding: 10px 20px; font-size: 12px;"><i class="fas fa-external-link-alt"></i> Visit Site</div>
+        </a>
+        <a href="https://quadmediatvm.github.io/Jsquare-mobiles/" target="_blank" class="project-card">
            <h4 style="font-size: 18px; margin-bottom: 8px;">J Square Mobiles</h4>
            <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.5;">Interactive multi-page retail platform featuring branch-specific logic and real-time inventory display.</p>
            <div class="btn-chrome" style="align-self: flex-start; padding: 10px 20px; font-size: 12px;"><i class="fas fa-external-link-alt"></i> Visit Site</div>
         </a>
-
-        <a href="https://karthiiii3dev.github.io/DIECAST-DRIPZ/" target="_blank" class="project-card">
+        <a href="https://quadmediatvm.github.io/Diecast-Dripz/" target="_blank" class="project-card">
            <h4 style="font-size: 18px; margin-bottom: 8px;">DIECAST-DRIPZ</h4>
-           <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.5;">A high-performance website utilizing GSAP animations .</p>
+           <p style="color: var(--muted); font-size: 14px; margin-bottom: 16px; line-height: 1.5;">A high-performance website utilizing GSAP animations.</p>
            <div class="btn-chrome" style="align-self: flex-start; padding: 10px 20px; font-size: 12px;"><i class="fas fa-code"></i> Visit Site</div>
         </a>
       </div>
     </div>
+  </div>
 
-    
-  <!-- ========== VIDEO SHOWCASE SECTION ========== -->
-  <section class="video-showcase-section" id="videos" data-aos="fade-up">
-    <div class="video-showcase-header">
-      <div>
-        <h2 class="section-title text-silver">Video Work</h2>
-        <p>Edits &amp; Motion Projects</p>
-      </div>
-      <div class="scroll-hint">
-        <span>Scroll</span>
-        <i class="fas fa-arrow-right"></i>
-      </div>
+  <!-- Auto-scrolling video strip inside Projects -->
+  <div class="video-showcase-header" style="max-width:1200px; margin: 0 auto 28px; padding: 0 24px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+    <div>
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--fg); text-transform:uppercase; letter-spacing:2px;"><i class="fas fa-clapperboard" style="margin-right:10px; color:var(--muted);"></i>Video Work</h3>
+      <p style="color:var(--muted); font-size:12px; letter-spacing:3px; text-transform:uppercase; margin-top:6px;">Edits &amp; Motion Projects</p>
     </div>
+    <div class="scroll-hint"><span>Scroll</span><i class="fas fa-arrow-right"></i></div>
+  </div>
 
     <div class="video-scroll-track" id="videoTrack">
 
@@ -1162,7 +1160,7 @@ section {
       </div>
 
     </div><!-- end track -->
-  </section>
+  </section><!-- end #projects -->
 
   <!-- SKILLS & EXPERTISE - Bento Box Layout (Based on Image 2) -->
   <section class="section-container" data-aos="fade-up" id="skills">
@@ -1434,9 +1432,50 @@ window.addEventListener('scroll', () => {
     const track = document.getElementById('videoTrack');
     if (!track) return;
 
-    // --- Intersection Observer: autoplay when card is in view ---
+    // --- Auto-scroll state ---
+    let autoScrollActive = false;
+    let autoScrollRAF = null;
+    const SCROLL_SPEED = 0.6; // px per frame — adjust to taste
+
+    function startAutoScroll() {
+      if (autoScrollRAF) return;
+      autoScrollActive = true;
+      function step() {
+        if (!autoScrollActive) return;
+        // When we've scrolled to the end, jump back to start seamlessly
+        if (track.scrollLeft >= track.scrollWidth - track.clientWidth - 2) {
+          track.scrollLeft = 0;
+        } else {
+          track.scrollLeft += SCROLL_SPEED;
+        }
+        autoScrollRAF = requestAnimationFrame(step);
+      }
+      autoScrollRAF = requestAnimationFrame(step);
+    }
+
+    function stopAutoScroll() {
+      autoScrollActive = false;
+      if (autoScrollRAF) { cancelAnimationFrame(autoScrollRAF); autoScrollRAF = null; }
+    }
+
+    // --- Start auto-scroll only when the section is in the viewport ---
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) startAutoScroll();
+        else stopAutoScroll();
+      });
+    }, { threshold: 0.1 });
+    sectionObserver.observe(document.getElementById('projects') || track.closest('section'));
+
+    // --- Pause auto-scroll on hover / touch; resume after ---
+    track.addEventListener('mouseenter', stopAutoScroll);
+    track.addEventListener('mouseleave', startAutoScroll);
+    track.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    track.addEventListener('touchend', () => setTimeout(startAutoScroll, 2000));
+
+    // --- Intersection Observer: autoplay videos in view ---
     const vidCards = track.querySelectorAll('.vid-card');
-    const observer = new IntersectionObserver((entries) => {
+    const vidObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         const vid = entry.target.querySelector('video');
         if (!vid) return;
@@ -1448,9 +1487,8 @@ window.addEventListener('scroll', () => {
           entry.target.classList.add('paused');
         }
       });
-    }, { threshold: 0.4 });
-
-    vidCards.forEach(card => observer.observe(card));
+    }, { threshold: 0.3 });
+    vidCards.forEach(card => vidObserver.observe(card));
 
     // --- Mute / Unmute buttons ---
     track.querySelectorAll('.vid-mute-btn').forEach(btn => {
@@ -1459,8 +1497,7 @@ window.addEventListener('scroll', () => {
         const card = btn.closest('.vid-card');
         const vid = card.querySelector('video');
         vid.muted = !vid.muted;
-        const icon = btn.querySelector('i');
-        icon.className = vid.muted ? 'fas fa-volume-xmark' : 'fas fa-volume-high';
+        btn.querySelector('i').className = vid.muted ? 'fas fa-volume-xmark' : 'fas fa-volume-high';
       });
     });
 
@@ -1469,38 +1506,38 @@ window.addEventListener('scroll', () => {
       card.addEventListener('click', (e) => {
         if (e.target.closest('.vid-mute-btn')) return;
         const vid = card.querySelector('video');
-        if (vid.paused) {
-          vid.play().catch(() => {});
-          card.classList.remove('paused');
-        } else {
-          vid.pause();
-          card.classList.add('paused');
-        }
+        if (vid.paused) { vid.play().catch(() => {}); card.classList.remove('paused'); }
+        else { vid.pause(); card.classList.add('paused'); }
       });
     });
 
     // --- Drag-to-scroll (mouse) ---
     let isDown = false, startX, scrollLeft;
     track.addEventListener('mousedown', e => {
+      stopAutoScroll();
       isDown = true;
       track.style.cursor = 'grabbing';
       startX = e.pageX - track.offsetLeft;
       scrollLeft = track.scrollLeft;
     });
-    document.addEventListener('mouseup', () => { isDown = false; track.style.cursor = 'grab'; });
+    document.addEventListener('mouseup', () => {
+      if (isDown) { isDown = false; track.style.cursor = 'grab'; startAutoScroll(); }
+    });
     track.addEventListener('mouseleave', () => { isDown = false; });
     track.addEventListener('mousemove', e => {
       if (!isDown) return;
       e.preventDefault();
-      const x = e.pageX - track.offsetLeft;
-      track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+      track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
     });
 
-    // --- Shift+Wheel horizontal scroll on desktop ---
+    // --- Mouse-wheel horizontal scroll ---
     track.addEventListener('wheel', e => {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return; // already horizontal
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       e.preventDefault();
+      stopAutoScroll();
       track.scrollLeft += e.deltaY;
+      clearTimeout(track._wheelTimer);
+      track._wheelTimer = setTimeout(startAutoScroll, 1500);
     }, { passive: false });
 
   })();
