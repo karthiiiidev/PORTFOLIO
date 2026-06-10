@@ -934,6 +934,106 @@ section {
   .vid-card.square { width: 230px; height: 230px; }
   .video-showcase-header { flex-direction: column; align-items: flex-start; }
 }
+/* ============================= */
+/* VIDEO SHOWCASE */
+/* ============================= */
+
+.video-showcase-section{
+    padding:100px 0;
+    overflow:hidden;
+    position:relative;
+}
+
+.video-carousel{
+    display:flex;
+    gap:24px;
+    overflow-x:auto;
+    scroll-behavior:smooth;
+    padding:20px;
+    scrollbar-width:none;
+}
+
+.video-carousel::-webkit-scrollbar{
+    display:none;
+}
+
+.video-card{
+    position:relative;
+    flex:0 0 auto;
+
+    width:280px;
+    height:500px;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,0.05);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    transition:all .4s ease;
+}
+
+.video-card:hover{
+    transform:translateY(-8px) scale(1.02);
+
+    border-color:rgba(255,255,255,.4);
+
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.4),
+    0 0 30px rgba(255,255,255,.08);
+}
+
+.video-card video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* Mute Button */
+
+.mute-btn{
+    position:absolute;
+    top:15px;
+    right:15px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    background:rgba(0,0,0,.4);
+
+    color:white;
+
+    backdrop-filter:blur(20px);
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.mute-btn:hover{
+    background:rgba(255,255,255,.15);
+    transform:scale(1.1);
+}
+
+/* Responsive */
+
+@media(max-width:768px){
+
+    .video-card{
+        width:220px;
+        height:390px;
+    }
+
+}
   </style>
   <div id="loader">
   <div class="loader-content">
@@ -1452,7 +1552,84 @@ window.addEventListener('scroll', () => {
       e.preventDefault();
       track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
     });
+<script>
 
+const carousel = document.getElementById("videoCarousel");
+
+let autoScroll;
+
+function startAutoScroll(){
+
+    autoScroll = setInterval(()=>{
+
+        carousel.scrollLeft += 1;
+
+        if(
+          carousel.scrollLeft >=
+          carousel.scrollWidth -
+          carousel.clientWidth
+        ){
+            carousel.scrollLeft = 0;
+        }
+
+    },15);
+
+}
+
+function stopAutoScroll(){
+    clearInterval(autoScroll);
+}
+
+startAutoScroll();
+
+carousel.addEventListener("mouseenter",stopAutoScroll);
+carousel.addEventListener("mouseleave",startAutoScroll);
+
+carousel.addEventListener("touchstart",stopAutoScroll);
+carousel.addEventListener("touchend",startAutoScroll);
+
+/* MUTE BUTTONS */
+
+document.querySelectorAll(".mute-btn").forEach(btn=>{
+
+    btn.addEventListener("click",()=>{
+
+        const video =
+        btn.parentElement.querySelector("video");
+
+        video.muted = !video.muted;
+
+        btn.innerHTML = video.muted
+        ? '<i class="fas fa-volume-xmark"></i>'
+        : '<i class="fas fa-volume-high"></i>';
+
+    });
+
+});
+
+/* PLAY ONLY WHEN VISIBLE */
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        const vid =
+        entry.target.querySelector("video");
+
+        if(entry.isIntersecting){
+            vid.play();
+        }else{
+            vid.pause();
+        }
+
+    });
+
+},{threshold:0.5});
+
+document.querySelectorAll(".video-card")
+.forEach(card=>observer.observe(card));
+
+</script>
     // --- Mouse-wheel horizontal scroll ---
     track.addEventListener('wheel', e => {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
