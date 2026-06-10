@@ -1048,115 +1048,42 @@ section {
     </div>
   </div>
 
-  <!-- Auto-scrolling video strip inside Projects -->
-  <div class="video-showcase-header" style="max-width:1200px; margin: 0 auto 28px; padding: 0 24px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+  <section class="video-showcase-section" id="videos">
+  <div class="video-showcase-header">
     <div>
-      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--fg); text-transform:uppercase; letter-spacing:2px;"><i class="fas fa-clapperboard" style="margin-right:10px; color:var(--muted);"></i>Video Work</h3>
-      <p style="color:var(--muted); font-size:12px; letter-spacing:3px; text-transform:uppercase; margin-top:6px;">Edits &amp; Motion Projects</p>
+      <h2 class="section-title text-silver">Video Work</h2>
+      <p>Edits & Motion Projects</p>
     </div>
-    <div class="scroll-hint"><span>Scroll</span><i class="fas fa-arrow-right"></i></div>
   </div>
 
-    <div class="video-scroll-track" id="videoTrack">
+  <div class="video-carousel" id="videoCarousel">
 
-      <!-- PORTRAIT card 1 — Reel/Vertical -->
-      <div class="vid-card portrait" data-aos="fade-up" data-aos-delay="0">
-        <span class="vid-tag">Reel</span>
-        <video src="https://raw.githubusercontent.com/karthiiii3dev/karthiiii3dev.github.io/main/video/edit1.mp4"
-               loop muted playsinline preload="none"></video>
-        <div class="vid-play-overlay"><i class="fas fa-play"></i></div>
-        <div class="vid-overlay"></div>
-        <button class="vid-mute-btn" aria-label="Toggle mute">
-          <i class="fas fa-volume-xmark"></i> <span>Sound</span>
-        </button>
-        <div class="vid-label">
-          <h4>Edit 01</h4>
-          <span>Dynamic Reel</span>
-        </div>
-      </div>
+    <div class="video-card">
+      <video src="video/vid (1).mp4" autoplay muted loop playsinline></video>
 
-      <!-- LANDSCAPE card 1 — wide/horizontal -->
-      <div class="vid-card landscape" data-aos="fade-up" data-aos-delay="50">
-        <span class="vid-tag">Cinematic</span>
-        <video src="https://raw.githubusercontent.com/karthiiii3dev/karthiiii3dev.github.io/main/video/edit2.mp4"
-               loop muted playsinline preload="none"></video>
-        <div class="vid-play-overlay"><i class="fas fa-play"></i></div>
-        <div class="vid-overlay"></div>
-        <button class="vid-mute-btn" aria-label="Toggle mute">
-          <i class="fas fa-volume-xmark"></i> <span>Sound</span>
-        </button>
-        <div class="vid-label">
-          <h4>Edit 02</h4>
-          <span>Cinematic Cut</span>
-        </div>
-      </div>
+      <button class="mute-btn">
+        <i class="fas fa-volume-xmark"></i>
+      </button>
+    </div>
 
-      <!-- PORTRAIT card 2 -->
-      <div class="vid-card portrait" data-aos="fade-up" data-aos-delay="100">
-        <span class="vid-tag">Motion</span>
-        <video src="https://raw.githubusercontent.com/karthiiii3dev/karthiiii3dev.github.io/main/video/edit3.mp4"
-               loop muted playsinline preload="none"></video>
-        <div class="vid-play-overlay"><i class="fas fa-play"></i></div>
-        <div class="vid-overlay"></div>
-        <button class="vid-mute-btn" aria-label="Toggle mute">
-          <i class="fas fa-volume-xmark"></i> <span>Sound</span>
-        </button>
-        <div class="vid-label">
-          <h4>Edit 03</h4>
-          <span>Motion Graphics</span>
-        </div>
-      </div>
+    <div class="video-card">
+      <video src="video/vid (2).mp4" autoplay muted loop playsinline></video>
 
-      <!-- SQUARE card -->
-      <div class="vid-card square" data-aos="fade-up" data-aos-delay="150">
-        <span class="vid-tag">Short</span>
-        <video src="https://raw.githubusercontent.com/karthiiii3dev/karthiiii3dev.github.io/main/video/edit4.mp4"
-               loop muted playsinline preload="none"></video>
-        <div class="vid-play-overlay"><i class="fas fa-play"></i></div>
-        <div class="vid-overlay"></div>
-        <button class="vid-mute-btn" aria-label="Toggle mute">
-          <i class="fas fa-volume-xmark"></i> <span>Sound</span>
-        </button>
-        <div class="vid-label">
-          <h4>Edit 04</h4>
-          <span>Short Form</span>
-        </div>
-      </div>
+      <button class="mute-btn">
+        <i class="fas fa-volume-xmark"></i>
+      </button>
+    </div>
 
-      <!-- LANDSCAPE card 2 -->
-      <div class="vid-card landscape" data-aos="fade-up" data-aos-delay="200">
-        <span class="vid-tag">Promo</span>
-        <video src="https://raw.githubusercontent.com/karthiiii3dev/karthiiii3dev.github.io/main/video/edit5.mp4"
-               loop muted playsinline preload="none"></video>
-        <div class="vid-play-overlay"><i class="fas fa-play"></i></div>
-        <div class="vid-overlay"></div>
-        <button class="vid-mute-btn" aria-label="Toggle mute">
-          <i class="fas fa-volume-xmark"></i> <span>Sound</span>
-        </button>
-        <div class="vid-label">
-          <h4>Edit 05</h4>
-          <span>Promo Reel</span>
-        </div>
-      </div>
+    <div class="video-card">
+      <video src="video/vid (3).mp4" autoplay muted loop playsinline></video>
 
-      <!-- PORTRAIT card 3 -->
-      <div class="vid-card portrait" data-aos="fade-up" data-aos-delay="250">
-        <span class="vid-tag">Reel</span>
-        <video src="https://raw.githubusercontent.com/karthiiii3dev/karthiiii3dev.github.io/main/video/edit6.mp4"
-               loop muted playsinline preload="none"></video>
-        <div class="vid-play-overlay"><i class="fas fa-play"></i></div>
-        <div class="vid-overlay"></div>
-        <button class="vid-mute-btn" aria-label="Toggle mute">
-          <i class="fas fa-volume-xmark"></i> <span>Sound</span>
-        </button>
-        <div class="vid-label">
-          <h4>Edit 06</h4>
-          <span>Visual Story</span>
-        </div>
-      </div>
+      <button class="mute-btn">
+        <i class="fas fa-volume-xmark"></i>
+      </button>
+    </div>
 
-    </div><!-- end track -->
-  </section><!-- end #projects -->
+  </div>
+</section>  </section><!-- end #projects -->
 
   <!-- SKILLS & EXPERTISE - Bento Box Layout (Based on Image 2) -->
   <section class="section-container" data-aos="fade-up" id="skills">
