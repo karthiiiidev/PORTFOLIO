@@ -641,11 +641,8 @@ body {
 
     /* Skills Grid Complex (Matching Image 2) */
     .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      display: block; /* neutralised – skills now use .skills-bento */
     }
-    
     .bento-item { display: flex; flex-direction: column; justify-content: flex-start; }
     .bento-item h4 { font-size: 20px; font-weight: 600; color: var(--fg); border-bottom: 1px solid var(--border-chrome); padding-bottom: 12px; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
     
@@ -1070,9 +1067,6 @@ section {
       <div class="float-icon fi-3"><img src="assets/1.png" alt="CapCut"></div>
       <div class="float-icon fi-4"><img src="assets/ff09d152dc3c2e6dba29b46941554a07-Photoroom.png" alt="Ps"></div>
       <div class="float-icon fi-5"><img src="assets/3.png" alt="GitHub"></div>
-      <div class="float-icon fi-5"><img src="assets/3.png" alt="GitHub"></div>
-      <div class="float-icon fi-5"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JS"></div>
-      
     </div>
 
     <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
@@ -1111,7 +1105,7 @@ section {
     </div>
     <div class="avatar-wrapper" data-aos="fade-left">
       <div class="avatar-inner">
-        <img src="assets/MENOBGCOAT.jpeg"  alt="Karthik S">
+        <img src="assets/DP.png"  alt="Karthik S">
       </div>
     </div>
   </div>
@@ -1183,16 +1177,227 @@ section {
   </div>
 </section>  </section><!-- end #projects -->
 
-  <!-- SKILLS & EXPERTISE - Bento Box Layout (Based on Image 2) -->
+  <!-- SKILLS & EXPERTISE -->
   <section class="section-container" data-aos="fade-up" id="skills">
     <h2 class="section-title text-silver">Skills & Expertise</h2>
-    
-    <div class="bento-grid">
-      <!-- Col 1 -->
+
+    <style>
+    /* ===== SKILLS GRID ===== */
+    .skills-bento {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .skills-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    /* Override any old bento-grid / glass-card hover that bleeds in */
+    .skills-bento .glass-card { transform: none !important; }
+
+    /* ── Card shell ── */
+    .sk-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 20px;
+      padding: 24px 24px 20px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.38s cubic-bezier(0.23,1,0.32,1),
+                  border-color 0.38s ease,
+                  box-shadow 0.38s ease;
+    }
+    /* shimmer sweep */
+    .sk-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg,
+        transparent 25%,
+        rgba(255,255,255,0.055) 50%,
+        transparent 75%);
+      transform: translateX(-130%);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+    .sk-card:hover::before { transform: translateX(130%); }
+    .sk-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,0.22);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+
+    /* ── Card title ── */
+    .sk-card h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    /* ── Generic row ── */
+    .sk-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: padding-left 0.22s ease;
+    }
+    .sk-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .sk-row:hover { padding-left: 5px; }
+
+    .sk-label {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      transition: color 0.22s;
+    }
+    .sk-row:hover .sk-label { color: #fff; }
+    .sk-label i {
+      font-size: 12px;
+      width: 16px;
+      text-align: center;
+      color: rgba(255,255,255,0.28);
+      transition: color 0.22s;
+    }
+    .sk-row:hover .sk-label i { color: rgba(255,255,255,0.65); }
+
+    /* ── Pill badge ── */
+    .sk-pill {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.11);
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.22s, color 0.22s;
+    }
+    .sk-row:hover .sk-pill,
+    .sk-edu-row:hover .sk-pill {
+      background: rgba(255,255,255,0.13);
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* ── Education rows ── */
+    .sk-edu-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: padding-left 0.22s ease;
+    }
+    .sk-edu-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .sk-edu-row:hover { padding-left: 5px; }
+
+    .sk-edu-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .sk-edu-sub {
+      font-size: 11px;
+      color: rgba(255,255,255,0.32);
+      margin-top: 3px;
+      letter-spacing: 0.8px;
+    }
+
+    /* ── Technical tools grid ── */
+    .sk-tools-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 9px;
+    }
+    .sk-tool {
+      aspect-ratio: 1 / 1;
+      border-radius: 13px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.28s cubic-bezier(0.23,1,0.32,1);
+    }
+    .sk-tool img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      transition: transform 0.28s ease;
+      display: block;
+    }
+    .sk-tool:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.3);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      transform: translateY(-3px) scale(1.07);
+    }
+    .sk-tool:hover img { transform: scale(1.12); }
+
+    /* tooltip */
+    .sk-tool::after {
+      content: attr(title);
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 50%;
+      transform: translateX(-50%) scale(0.85);
+      background: rgba(8,8,8,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 7px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 20;
+    }
+    .sk-tool:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .skills-bento { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .skills-bento { grid-template-columns: 1fr; }
+      .sk-tools-grid { grid-template-columns: repeat(5, 1fr); }
+    }
+    </style>
+
+    <div class="skills-bento">
+
+      <!-- ══ COL 1: Education + Interests ══ -->
       <div class="skills-col">
- 
-        <!-- Education -->
-        <div class="sk-card" data-aos="fade-up">
+
+        <div class="sk-card" data-aos="fade-up" data-aos-delay="0">
           <h4>Education</h4>
           <div class="sk-edu-row">
             <div>
@@ -1216,36 +1421,41 @@ section {
             <span class="sk-pill">KG</span>
           </div>
         </div>
- 
-        <!-- Interests -->
+
         <div class="sk-card" data-aos="fade-up" data-aos-delay="80">
           <h4>Interests</h4>
           <div class="sk-row">
-            <span class="sk-label"><i class="fas fa-paint-brush"></i> Design Trends</span>
+            <span class="sk-label"><i class="fas fa-paint-brush"></i>Design Trends</span>
           </div>
           <div class="sk-row">
-            <span class="sk-label"><i class="fas fa-microchip"></i> Technology</span>
+            <span class="sk-label"><i class="fas fa-microchip"></i>Technology</span>
           </div>
           <div class="sk-row">
-            <span class="sk-label"><i class="fas fa-film"></i> Motion Design</span>
+            <span class="sk-label"><i class="fas fa-film"></i>Motion Design</span>
           </div>
         </div>
- 
-      </div><!-- end col 1 -->
- 
-      <!-- ── COL 2 ── -->
+
+      </div>
+
+      <!-- ══ COL 2: Soft Skills + Languages ══ -->
       <div class="skills-col">
- 
-        <!-- Soft Skills -->
+
         <div class="sk-card" data-aos="fade-up" data-aos-delay="120">
           <h4>Soft Skills</h4>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-lightbulb"></i> Creativity</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-comments"></i> Communication</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-brain"></i> Critical Thinking</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-clock"></i> Time Management</span></div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-lightbulb"></i>Creativity</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-comments"></i>Communication</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-brain"></i>Critical Thinking</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-clock"></i>Time Management</span>
+          </div>
         </div>
- 
-        <!-- Language -->
+
         <div class="sk-card" data-aos="fade-up" data-aos-delay="200">
           <h4>Languages</h4>
           <div class="sk-row">
@@ -1257,24 +1467,34 @@ section {
             <span class="sk-pill">Intermediate</span>
           </div>
         </div>
- 
-      </div><!-- end col 2 -->
- 
-      <!-- ── COL 3 ── -->
+
+      </div>
+
+      <!-- ══ COL 3: Skill Set + Technical Tools ══ -->
       <div class="skills-col">
- 
-        <!-- Skill Set -->
+
         <div class="sk-card" data-aos="fade-up" data-aos-delay="160">
           <h4>Skill Set</h4>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-code"></i> Web Development</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-pen-ruler"></i> Web Designing</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-scissors"></i> Video Editing</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-bezier-curve"></i> Graphic Designing</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-wand-magic-sparkles"></i> Motion Graphics</span></div>
-          <div class="sk-row"><span class="sk-label"><i class="fas fa-photo-film"></i> Content Creation</span></div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-code"></i>Web Development</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-pen-ruler"></i>Web Designing</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-scissors"></i>Video Editing</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-bezier-curve"></i>Graphic Designing</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-wand-magic-sparkles"></i>Motion Graphics</span>
+          </div>
+          <div class="sk-row">
+            <span class="sk-label"><i class="fas fa-photo-film"></i>Content Creation</span>
+          </div>
         </div>
- 
-        <!-- Technical Tools -->
+
         <div class="sk-card" data-aos="fade-up" data-aos-delay="260">
           <h4>Technical Tools</h4>
           <div class="sk-tools-grid">
@@ -1289,9 +1509,9 @@ section {
             <div class="sk-tool" title="JavaScript"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JS"></div>
           </div>
         </div>
- 
-      </div><!-- end col 3 -->
- 
+
+      </div>
+
     </div><!-- end .skills-bento -->
   </section>
   <!-- ========== CONTACT SECTION REDESIGN ========== -->
@@ -1538,7 +1758,7 @@ section {
     <!-- Email -->
     <a href="mailto:karthiiii.dev@gmail.com" class="contact-card email-card">
       <i class="fas fa-envelope-open card-icon"></i>
-      <span class="contact-card-label">karthiiii.deV</span>
+      <span class="contact-card-label">karthiiii.dev@gmail.com</span>
     </a>
 
     <!-- WhatsApp -->
