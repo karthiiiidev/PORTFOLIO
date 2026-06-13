@@ -569,11 +569,14 @@ body {
 }
 
     /* Positions mapping to background depth */
-    .fi-1 { top: 20%; left: 15%; animation-delay: 0s; transform: scale(1.1); }
-    .fi-2 { top: 60%; left: 10%; animation-delay: 1.5s; transform: scale(0.9); }
-    .fi-3 { top: 15%; right: 15%; animation-delay: 0.7s; transform: scale(1.2); }
-    .fi-4 { top: 65%; right: 12%; animation-delay: 2.2s; transform: scale(1.0); }
-    .fi-5 { top: 80%; left: 30%; animation-delay: 3.5s; transform: scale(0.8); }
+    .fi-1 { top: 15%; left: 15%; animation-delay: 0s; transform: scale(1.1); }
+    .fi-2 { top: 50%; left: 8%; animation-delay: 1.5s; transform: scale(0.9); }
+    .fi-3 { top: 80%; left: 18%; animation-delay: 0.7s; transform: scale(1.2); }
+    .fi-4 { top: 15%; right: 15%; animation-delay: 2.2s; transform: scale(1.0); }
+    .fi-5 { top: 50%; right: 8%; animation-delay: 3.5s; transform: scale(0.8); }
+    .fi-6 { top: 80%; right: 18%; animation-delay: 1.2s; transform: scale(0.95); }
+    .fi-7 { top: 5%; left: 45%; animation-delay: 4.1s; transform: scale(1.05); } 
+    .fi-8 { top: 90%; left: 45%; animation-delay: 2.8s; transform: scale(0.7); } 
 
     @keyframes float {
       0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -1064,6 +1067,7 @@ section {
     <div class="nav-content">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#agency">Startup</a>
       <a href="#skills">Skills</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1076,6 +1080,8 @@ section {
       <div class="float-icon fi-3"><img src="assets/1.png" alt="CapCut"></div>
       <div class="float-icon fi-4"><img src="assets/ff09d152dc3c2e6dba29b46941554a07-Photoroom.png" alt="Ps"></div>
       <div class="float-icon fi-5"><img src="assets/3.png" alt="GitHub"></div>
+      <div class="float-icon fi-6"><img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5"></div>
+      <div class="float-icon fi-8"><img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JS"></div>
     </div>
 
     <div class="hero-content" data-aos="zoom-out" data-aos-duration="1500">
@@ -1190,6 +1196,31 @@ section {
 
   </div>
 </section>  </section><!-- end #projects -->
+
+  <!-- MY STARTUP AGENCY SECTION -->
+  <section class="section-container" data-aos="fade-up" id="agency" style="padding-top: 40px; padding-bottom: 40px;">
+    <h2 class="section-title text-silver">My Startup</h2>
+    <div class="glass-card" style="display: flex; flex-wrap: wrap; align-items: center; gap: 60px;">
+      <div style="flex: 1; min-width: 250px; text-align: center;">
+        <img src="assets/quadmedia_logo.png" alt="QUADMEDIA.TVM Logo" style="max-width: 250px; width: 100%; border-radius: 20px; mix-blend-mode: screen; filter: drop-shadow(0 10px 40px rgba(255,255,255,0.1)); margin: 0 auto; display: block;">
+      </div>
+      <div style="flex: 2; min-width: 280px;" data-aos="fade-left">
+        <div style="font-size: 13px; letter-spacing: 3px; color: var(--color-primary, #d4af37); text-transform: uppercase; margin-bottom: 8px; font-weight: 600;">Web Design Agency</div>
+        <h3 style="font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--fg); margin-bottom: 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; text-transform: uppercase;">QUADMEDIA.TVM</h3>
+        <p style="color: var(--muted); font-size: 16px; line-height: 1.6; margin-bottom: 24px;">
+          QUADMEDIA.TVM specializes in building high-performance, modern, SEO-optimized websites with premium UI/UX and smooth animations.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="https://quadmediatvm.github.io/Website/" target="_blank" class="btn-chrome">
+            <i class="fas fa-globe"></i> Visit Website
+          </a>
+          <a href="https://www.instagram.com/quadmedia.tvm/" target="_blank" class="contact-badge" style="margin: 0;">
+            <i class="fab fa-instagram" style="color: #e1306c;"></i> @quadmedia.tvm
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- SKILLS & EXPERTISE -->
   <section class="section-container" data-aos="fade-up" id="skills">
@@ -1770,7 +1801,7 @@ section {
     </a>
 
     <!-- Email -->
-    <a href="mailto:karthiiii.dev@gmail.com" class="contact-card email-card">
+    <a href="mailto:karthiiii.dev" class="contact-card email-card">
       <i class="fas fa-envelope-open card-icon"></i>
       <span class="contact-card-label">karthiiii.dev@gmail.com</span>
     </a>
@@ -1796,13 +1827,27 @@ section {
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     const cursor = document.getElementById('custom-cursor');
+    
+    if(cursor) {
+      cursor.style.opacity = '0';
+      cursor.style.transition = 'width 0.2s, height 0.2s, background-color 0.2s, transform 0.1s, opacity 0.2s';
+    }
 
     // 1. Smoothly track mouse movement
     document.addEventListener('mousemove', (e) => {
       if(cursor) {
         cursor.style.left = e.clientX + 'px';
         cursor.style.top = e.clientY + 'px';
+        cursor.style.opacity = '1';
       }
+    });
+
+    document.addEventListener('mouseleave', () => {
+      if(cursor) cursor.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', () => {
+      if(cursor) cursor.style.opacity = '1';
     });
 
     // 2. Expand cursor on interactive elements
@@ -1826,13 +1871,6 @@ section {
     });
 </script>
   <script>
-    AOS.init({
-      once: true,
-      offset: 50,
-      duration: 1000,
-      easing: 'ease-out-cubic',
-    });
-    
     // IG Counters Logic
     const $ = id => document.getElementById(id);
     
@@ -2069,7 +2107,6 @@ window.addEventListener('scroll', () => {
       e.preventDefault();
       track.scrollLeft = scrollLeft - (e.pageX - track.offsetLeft - startX) * 1.5;
     });
-<script>
 
 const carousel = document.getElementById("videoCarousel");
 
@@ -2129,29 +2166,44 @@ const observer = new IntersectionObserver(entries=>{
 document.querySelectorAll(".video-card")
 .forEach(card=>observer.observe(card));
 
-</script>
-  <script>
-document.querySelectorAll('.vid-mute-btn').forEach(btn => {
+document.querySelectorAll('.video-card video').forEach(video => {
+  video.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitRequestFullscreen) {
+      video.webkitRequestFullscreen();
+    } else if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen();
+    } else if (video.msRequestFullscreen) {
+      video.msRequestFullscreen();
+    }
+  });
+});
+
+document.querySelectorAll('.mute-btn').forEach(btn => {
 
   btn.addEventListener('click', async function(e) {
 
     e.stopPropagation();
 
-    const card = this.closest('.vid-card');
+    const card = this.closest('.video-card');
     const video = card.querySelector('video');
 
+    // Store state before muting all
+    const isCurrentlyMuted = video.muted;
+
     // Mute all videos first
-    document.querySelectorAll('.vid-card video').forEach(v => {
+    document.querySelectorAll('.video-card video').forEach(v => {
       v.muted = true;
     });
 
-    document.querySelectorAll('.vid-mute-btn').forEach(b => {
-      b.innerHTML =
-      '<i class="fas fa-volume-xmark"></i>';
+    document.querySelectorAll('.mute-btn').forEach(b => {
+      b.innerHTML = '<i class="fas fa-volume-xmark"></i>';
     });
 
-    // Toggle selected video
-    if(video.muted){
+    // Toggle selected video based on its previous state
+    if(isCurrentlyMuted){
 
       video.muted = false;
       video.volume = 1;
@@ -2162,21 +2214,18 @@ document.querySelectorAll('.vid-mute-btn').forEach(btn => {
         console.log(err);
       }
 
-      this.innerHTML =
-      '<i class="fas fa-volume-high"></i>';
+      this.innerHTML = '<i class="fas fa-volume-high"></i>';
 
     }else{
 
       video.muted = true;
 
-      this.innerHTML =
-      '<i class="fas fa-volume-xmark"></i>';
+      this.innerHTML = '<i class="fas fa-volume-xmark"></i>';
     }
 
   });
 
 });
-</script>
     
   
   })();
