@@ -1,0 +1,19 @@
+{
+  "name": "karthik-portfolio",
+  "version": "1.0.0",
+  "description": "Karthik S Portfolio - Web Developer | Designer | Video Editor",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "portfolio",
+    "web-developer",
+    "designer"
+  ],
+  "author": "Karthik S",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
